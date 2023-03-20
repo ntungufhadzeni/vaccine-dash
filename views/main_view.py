@@ -2,18 +2,15 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc, dash_table
 
 
-table_columns = ['School', 'EMIS number', 'Subdistrict', 'District', 'Total learners', 'Consent >=9 years', 'First dose',
-                 'Second dose', 'AEFI', 'Absent', 'Left school', 'Contra', 'Underage', 'Doses used', 'Doses wasted']
+table_columns = ['School', 'EMIS number', 'Subdistrict', 'District', 'Total learners', 'Consent \u22659 years', 'First dose',
+                 'Second dose', 'AEFI', 'Absent', 'Left school', 'Contra', 'Underage (<9 years)', 'Doses used', 'Doses wasted']
 data_columns = ['school_name', 'emis_number', 'subdistrict_name', 'district_name', 'total_girl_learners', 'consent >=9', 'first_dose',
                 'second_dose', 'aefi', 'absent', 'left', 'contra', 'underage', 'doses_used',
                 'doses_wasted']
 
-first_dose_table_columns = ['School', 'EMIS', 'Subdistrict name', 'District', '9 years', '10 years', '11 years', '12 years',
-       '13 years', '14 years', '15 years and above']
-first_dose_data_columns = ['school_name', 'emis_number', 'subdistrict_name', 'district_name', 'first_dose_9', 'first_dose_10', 'first_dose_11', 'first_dose_12',
-       'first_dose_13', 'first_dose_14', 'first_dose_15']
+first_dose_table_data = [{'name': ['','School'], 'id':'school_name'}, {'name': ['','EMIS'], 'id': 'emis_number'}, {'name':['','Subdistrict name'], 'id': 'subdistrict_name'}, {'name':['','District'], 'id': 'district_name'}, {'name': ['First dose','9 years'], 'id':'first_dose_9'}, {'name': ['First dose','10 years'], 'id':'first_dose_10'}, {'name': ['First dose','11 years'], 'id':'first_dose_11'}, {'name': ['First dose','12 years'], 'id':'first_dose_12'},
+       {'name': ['First dose','13 years'], 'id':'first_dose_13'}, {'name': ['First dose','14 years'], 'id':'first_dose_14'}, {'name': ['First dose','\u226515 years'], 'id':'first_dose_15'}]
 main_table = zip(table_columns, data_columns)
-first_dose_table_data = zip(first_dose_table_columns, first_dose_data_columns)
 textStyle = {'color': '#7FDBFF'}
 headStyle = {'font-weight': 'bold'}
 cards = {'display': 'inline-block', 'border-radius': '20px',
@@ -54,9 +51,18 @@ table_data = html.Div(
                     id="table-schools",
                     columns=[{'name': c, 'id': i} for c, i in main_table],
                     page_size=10,
+                    fixed_rows={'headers': True, 'data': 0},
+                    style_cell={
+                        'whiteSpace': 'normal', 'textAlign': 'left'},
                     sort_action='native',
                     filter_action='custom',
+                    style_header={
+                        'backgroundColor': 'rgb(0,0,255)',
+                        'color': 'white'
+                    },
                     filter_query='',
+                    virtualization=True,
+                    page_action='none',
                     style_data_conditional=[
                         {'if': {'column_id': 'school_name'},
                          'width': '60px'},
@@ -103,19 +109,24 @@ first_dose_table = html.Div(
         html.Div(
             [
                 html.Br(),
-                html.H3('First dose'),
                 html.Br(),
                 dash_table.DataTable(
                     id="first-dose",
-                    columns=[{'name': c, 'id': i}
-                             for c, i in first_dose_table_data],
+                    columns=first_dose_table_data,
                     page_size=10,
+                    fixed_rows={'headers': True, 'data': 0},
+                    style_cell={
+                        'whiteSpace': 'normal', 'textAlign': 'left'},
                     sort_action='native',
                     filter_action='custom',
+                    merge_duplicate_headers=True,
                     filter_query='',
-                    style_table={
-                        'height': 400,
+                    virtualization=True,
+                    style_header={
+                        'backgroundColor': 'rgb(0,0,255)',
+                        'color': 'white'
                     },
+                    page_action='none',
                     style_data_conditional=[
                         {'if': {'column_id': 'school_name'},
                          'width': '80px'},
