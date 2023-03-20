@@ -1,0 +1,7 @@
+[database]
+con = postgresql://postgres:9PTjb2aH%40jHzFYw@db.udbtogdbdkrfkiflquum.supabase.co:5432/postgres
+DATABASE_URI=mysql+pymysql://root:Nnrrr%40123@127.0.0.1/hpv
+
+[supabase]
+url = https://udbtogdbdkrfkiflquum.supabase.co
+anon = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkYnRvZ2RiZGtyZmtpZmxxdXVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njg1MjYzNTYsImV4cCI6MTk4NDEwMjM1Nn0.yi1XZTtb3Rp8QlnrYj4b3prpiXzk50c_TJpZN-K3IGY
