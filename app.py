@@ -23,7 +23,7 @@ app._favicon = 'favicon.ico'
 
 server.config.update(
     SECRET_KEY=os.urandom(12),
-    SQLALCHEMY_DATABASE_URI=DATABASE_URI,
+    SQLALCHEMY_DATABASE_URI='sqlite:///' + os.path.join(BASE_DIR, 'users.db'),
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 )
 

@@ -2,7 +2,7 @@ from dash import html, dcc
 from dash.dependencies import Input, Output
 from flask_login import current_user
 
-from app import app
+from app import app, server
 from data import Data
 from views import login, dashboard, profile, error, admin
 from datetime import datetime
