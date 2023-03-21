@@ -178,7 +178,7 @@ table_card = html.Div([dbc.Card([table_data])])
 hpv_table_card = html.Div([dbc.Card([hpv_table])])
 
 main_left = html.Div(dbc.Card(
-    [html.Br(), html.H6('Filter', style=headStyle), html.Br(), html.Br(), date_picker, html.Br(),]))
+    [html.Br(), html.H6('Filter', style=headStyle), html.Br(), html.Br(), dbc.Card(date_picker, style={'height':'50vh'}), html.Br(),]))
 
 
 seg1 = dbc.Row([dbc.Col(html.Div(main_left),width={'size': 3}), dbc.Col(table_card), dbc.Col(hpv_table_card)])
