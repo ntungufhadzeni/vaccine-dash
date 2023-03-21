@@ -92,8 +92,7 @@ def display_page(pathname):
     Input('interval', 'n_intervals')
 )
 def update_date_picker(n):
-    year = datetime.now().strftime('%Y')
-    return datetime(2023, 1, 1).date(), datetime.now().date(), datetime.now().date(), datetime(int(year), 1, 1).date(), datetime.now().date()
+    return datetime(2023, 1, 1).date(), datetime.now().date(), datetime.now().date(), datetime(2023, 1, 1).date(), datetime.now().date()
 
 
 @app.callback(
