@@ -2,9 +2,9 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc, dash_table
 
 
-table_columns = ['School', 'EMIS number', 'Subdistrict', 'District', 'Total learners', 'Consent \u22659 years', 'First dose',
+table_columns = ['School', 'EMIS number', 'Subdistrict', 'District', 'Total learners', 'Total learners added', 'Consent \u22659 years', 'First dose',
                  'Second dose', 'AEFI', 'Absent', 'Left school', 'Contra', 'Underage (<9 years)', 'Doses used', 'Doses wasted']
-data_columns = ['school_name', 'emis_number', 'subdistrict_name', 'district_name', 'total_girl_learners', 'consent >=9', 'first_dose',
+data_columns = ['school_name', 'emis_number', 'subdistrict_name', 'district_name', 'total_girl_learners', 'learners_added', 'consent >=9', 'first_dose',
                 'second_dose', 'aefi', 'absent', 'left', 'contra', 'underage', 'doses_used',
                 'doses_wasted']
 
@@ -75,6 +75,8 @@ table_data = html.Div(
                          {'if': {'column_id': 'district_name'},
                          'width': '80px'},
                          {'if': {'column_id': 'total_girl_learners'},
+                         'width': '60px'},
+                         {'if': {'column_id': 'learners_added'},
                          'width': '60px'},
                          {'if': {'column_id': 'consent >=9'},
                          'width': '80px'},

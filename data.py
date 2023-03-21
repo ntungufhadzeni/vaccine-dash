@@ -43,6 +43,15 @@ class Data:
       self.df_logs = self.df_logs.loc[start_date: end_date, :]
       self.df_add = self.df_add.loc[start_date: end_date, :]
       self.format_data()
+      
+   
+   def add_learners_registered(self):
+      df_learners_registered = self.df_logs[(self.df_logs.type.eq(0)) | (self.df_logs.type.eq(11))]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_learners_registered.rename(columns={'learner_id': 'learners_added'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_learners_registered, on='school_name', how='left')
+      self.df_main['learners_added'] = self.df_main['learners_added'].fillna(0)
+      self.df_main['learners_added'] = self.df_main['learners_added'].astype('int')
 
 
 
@@ -244,6 +253,7 @@ class Data:
 
    def format_data(self):
       self.add_consent()
+      self.add_learners_registered()
       self.add_first_dose()
       self.add_second_dose()
       self.add_aefi()
@@ -268,7 +278,8 @@ class Data:
       self.add_doses_used()
       self.add_doses_wasted()
 
-   def get_data(self):
+   @property
+   def data(self):
       return self.df_main
 
 

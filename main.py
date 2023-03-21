@@ -52,6 +52,7 @@ def split_filter_part(filter_part):
 
     return [None] * 3
 
+
 @app.callback(
     Output('page-content', 'children'),
     Input('url', 'pathname')
@@ -81,39 +82,6 @@ def display_page(pathname):
         return error.layout
 
 
-@app.callback(
-    Output(component_id='filter-district', component_property='options'),
-    Input('interval', 'n_intervals')
-)
-def update_district_filter(n):
-    return ['Mogale City',
-            'Randfontein',
-            'East District 2',
-            'Merafong',
-            'Westonaria',
-            'Tshwane 1',
-            'Tshwane 2',
-            'Tshwane 3',
-            'Tshwane 4',
-            'Tshwane 5',
-            'Tshwane 6',
-            'Tshwane 7',
-            'Emfuleni',
-            'Lesedi',
-            'Midvaal',
-            'Region A',
-            'Region B',
-            'North 1 District',
-            'Region C',
-            'Region D',
-            'Region E',
-            'Region F',
-            'Region G',
-            'East District 1',
-            'North 2 District',
-            'South 1 District',
-            'South 2 District']
-
 
 @app.callback(
     [Output('date_picker_range', 'min_date_allowed'),
@@ -137,7 +105,7 @@ def update_date_picker(n):
 )
 def update_data_table(filter,start_date, end_date, n):
     data = Data(start_date, end_date)
-    df = data.get_data()
+    df = data.data
 
     filtering_expressions = filter.split(' && ')
     dff = df
@@ -167,7 +135,7 @@ def update_data_table(filter,start_date, end_date, n):
 )
 def update_first_dose_table(filter, start_date, end_date, n):
     data = Data(start_date, end_date)
-    df = data.get_data()
+    df = data.data
 
     filtering_expressions = filter.split(' && ')
     dff = df
