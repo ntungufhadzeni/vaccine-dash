@@ -132,9 +132,10 @@ def update_date_picker(n):
     Output('table-schools', 'data'),
     [Input('table-schools', 'filter_query'),
     Input('date_picker_range', 'start_date'),
-     Input('date_picker_range', 'end_date')]
+     Input('date_picker_range', 'end_date'),
+    Input('interval', 'n_intervals')]
 )
-def update_data_table(filter,start_date, end_date):
+def update_data_table(filter,start_date, end_date, n):
     data = Data(start_date, end_date)
     df = data.get_data()
 
@@ -158,12 +159,13 @@ def update_data_table(filter,start_date, end_date):
 
 
 @app.callback(
-    Output('first-dose', 'data'),
-    [Input('first-dose', 'filter_query'),
+    Output('hpv', 'data'),
+    [Input('hpv', 'filter_query'),
     Input('date_picker_range', 'start_date'),
-     Input('date_picker_range', 'end_date')]
+     Input('date_picker_range', 'end_date'),
+    Input('interval', 'n_intervals')]
 )
-def update_first_dose_table(filter, start_date, end_date):
+def update_first_dose_table(filter, start_date, end_date, n):
     data = Data(start_date, end_date)
     df = data.get_data()
 

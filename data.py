@@ -184,6 +184,62 @@ class Data:
       self.df_main = pd.merge(self.df_main, df_doses_wasted, on='school_name', how='left')
       self.df_main['doses_wasted'] = self.df_main['doses_wasted'].fillna(0)
       self.df_main['doses_wasted'] = self.df_main['doses_wasted'].astype('int')
+      
+   def add_second_dose_9(self):
+      df_second_dose_9 = self.df_logs[(self.df_logs.type.eq(3)) & (self.df_logs.age.eq(9))]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_second_dose_9.rename(columns={'learner_id': 'second_dose_9'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_second_dose_9, on='school_name', how='left')
+      self.df_main['second_dose_9'] = self.df_main['second_dose_9'].fillna(0)
+      self.df_main['second_dose_9'] = self.df_main['second_dose_9'].astype('int')
+
+   def add_second_dose_10(self):
+      df_second_dose_10 = self.df_logs[(self.df_logs.type.eq(3)) & (self.df_logs.age.eq(10))]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_second_dose_10.rename(columns={'learner_id': 'second_dose_10'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_second_dose_10, on='school_name', how='left')
+      self.df_main['second_dose_10'] = self.df_main['second_dose_10'].fillna(0)
+      self.df_main['second_dose_10'] = self.df_main['second_dose_10'].astype('int')
+
+   def add_second_dose_11(self):
+      df_second_dose_11 = self.df_logs[(self.df_logs.type.eq(3)) & (self.df_logs.age.eq(11))]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_second_dose_11.rename(columns={'learner_id': 'second_dose_11'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_second_dose_11, on='school_name', how='left')
+      self.df_main['second_dose_11'] = self.df_main['second_dose_11'].fillna(0)
+      self.df_main['second_dose_11'] = self.df_main['second_dose_11'].astype('int')
+
+   def add_second_dose_12(self):
+      df_second_dose_12 = self.df_logs[(self.df_logs.type.eq(3)) & (self.df_logs.age.eq(12))]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_second_dose_12.rename(columns={'learner_id': 'second_dose_12'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_second_dose_12, on='school_name', how='left')
+      self.df_main['second_dose_12'] = self.df_main['second_dose_12'].fillna(0)
+      self.df_main['second_dose_12'] = self.df_main['second_dose_12'].astype('int')
+
+   def add_second_dose_13(self):
+      df_second_dose_13 = self.df_logs[(self.df_logs.type.eq(3)) & (self.df_logs.age.eq(13))]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_second_dose_13.rename(columns={'learner_id': 'second_dose_13'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_second_dose_13, on='school_name', how='left')
+      self.df_main['second_dose_13'] = self.df_main['second_dose_13'].fillna(0)
+      self.df_main['second_dose_13'] = self.df_main['second_dose_13'].astype('int')
+
+   def add_second_dose_14(self):
+      df_second_dose_14 = self.df_logs[(self.df_logs.type.eq(3)) & (self.df_logs.age.eq(14))]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_second_dose_14.rename(columns={'learner_id': 'second_dose_14'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_second_dose_14, on='school_name', how='left')
+      self.df_main['second_dose_14'] = self.df_main['second_dose_14'].fillna(0)
+      self.df_main['second_dose_14'] = self.df_main['second_dose_14'].astype('int')
+
+   def add_second_dose_15(self):
+      df_second_dose_15 = self.df_logs[(self.df_logs.type.eq(3)) & (self.df_logs.age >= 15)]. \
+                  groupby('school_name')['learner_id'].nunique().reset_index()
+      df_second_dose_15.rename(columns={'learner_id': 'second_dose_15'}, inplace=True)
+      self.df_main = pd.merge(self.df_main, df_second_dose_15, on='school_name', how='left')
+      self.df_main['second_dose_15'] = self.df_main['second_dose_15'].fillna(0)
+      self.df_main['second_dose_15'] = self.df_main['second_dose_15'].astype('int')
 
 
    def format_data(self):
@@ -202,6 +258,13 @@ class Data:
       self.add_first_dose_13()
       self.add_first_dose_14()
       self.add_first_dose_15()
+      self.add_second_dose_9()
+      self.add_second_dose_10()
+      self.add_second_dose_11()
+      self.add_second_dose_12()
+      self.add_second_dose_13()
+      self.add_second_dose_14()
+      self.add_second_dose_15()
       self.add_doses_used()
       self.add_doses_wasted()
 

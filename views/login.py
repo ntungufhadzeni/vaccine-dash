@@ -19,7 +19,7 @@ layout = dbc.Container([
                 className='center',
                 height=250
             )
-        ],width={"size": 6, "offset": 3},
+        ],width={"size": 6, "offset": 5},
         )
     ),
     html.Br(),
