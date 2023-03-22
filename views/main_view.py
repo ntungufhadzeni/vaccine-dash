@@ -228,7 +228,7 @@ main_left = html.Div(dbc.Card(
     [dbc.Card(date_picker, style={'height':'40vh'}), html.Br(),]))
 
 
-seg1 = dbc.Row([dbc.Col(html.Div(main_left),width={'size': 3}), dbc.Col(table_card), dbc.Col(hpv_table_card)])
+seg1 = dbc.Row([dbc.Col(dbc.Card(main_left, style={'width':'40vh'})), dbc.Col(table_card), dbc.Col(hpv_table_card)])
 
 
 content = [html.Br(), seg1, html.Br()]
