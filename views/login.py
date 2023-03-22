@@ -17,7 +17,7 @@ layout = dbc.Container([
             html.Img(
                 src='assets/logo.png',
                 className='center',
-                height=250
+                height=200
             )
         ],width={"size": 6, "offset": 5},
         )
@@ -34,7 +34,7 @@ layout = dbc.Container([
                     n_submit=0
                 )
             ],
-            width={"size": 6, "offset": 3},
+            width={"size": 4, "offset": 4},
         )
     ),
     dbc.Row(
@@ -48,7 +48,7 @@ layout = dbc.Container([
                     n_submit=0,
                 )
             ],
-            width={"size": 6, "offset": 3},
+            width={"size": 4, "offset": 4},
         )
     ),
     dbc.Row(
@@ -56,13 +56,13 @@ layout = dbc.Container([
             dcc.Checklist(id='remember', className="mr-2",
                           options=[{"label": 'Remember me', "value": "remember"}]
                           ),
-            width={"size": 3, "offset": 3},
+            width={"size": 4, "offset": 4},
         ),
     ),
     dbc.Row(
         dbc.Col(
             dbc.Button("Login", id="login-btn", color="dark", n_clicks=0),
-            width={"size": 3, "offset": 3},
+            width={"size": 3, "offset": 4},
         ),
     ),
     dbc.Row(

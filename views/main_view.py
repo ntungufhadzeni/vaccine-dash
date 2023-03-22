@@ -2,16 +2,56 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc, dash_table
 
 
-table_columns = ['School', 'EMIS number', 'Subdistrict', 'District', 'Total learners', 'Total learners added', 'Consent \u22659 years', 'First dose',
-                 'Second dose', 'AEFI', 'Absent', 'Left school', 'Contra', 'Underage (<9 years)', 'Doses used', 'Doses wasted']
-data_columns = ['school_name', 'emis_number', 'subdistrict_name', 'district_name', 'total_girl_learners', 'learners_added', 'consent >=9', 'first_dose',
-                'second_dose', 'aefi', 'absent', 'left', 'contra', 'underage', 'doses_used',
+table_columns = ['Name of School', 'EMIS number',
+                 'Subdistrict',
+                 'District',
+                 'Total learners',
+                 'Total learners added',
+                 'Consent \u22659 years',
+                 'First dose',
+                 'Second dose',
+                 'AEFI', 'Absent',
+                 'Left school',
+                 'Contra-indications',
+                 'Underage (<9 years)',
+                 'Doses used',
+                 'Doses wasted']
+data_columns = ['school_name',
+                'emis_number',
+                'subdistrict_name',
+                'district_name',
+                'total_girl_learners',
+                'learners_added',
+                'consent >=9',
+                'first_dose',
+                'second_dose',
+                'aefi',
+                'absent',
+                'left',
+                'contra',
+                'underage',
+                'doses_used',
                 'doses_wasted']
 
-hpv_table_data = [{'name': ['', 'School'], 'id':'school_name'}, {'name': ['', 'EMIS'], 'id': 'emis_number'}, {'name': ['', 'Subdistrict name'], 'id': 'subdistrict_name'}, {'name': ['', 'District'], 'id': 'district_name'}, {'name': ['First dose', '9'], 'id':'first_dose_9'}, {'name': ['First dose', '10'], 'id':'first_dose_10'}, {'name': ['First dose', '11'], 'id':'first_dose_11'}, {'name': ['First dose', '12'], 'id':'first_dose_12'},
-                         {'name': ['First dose', '13'], 'id':'first_dose_13'}, {'name': ['First dose', '14'], 'id':'first_dose_14'}, {'name': ['First dose', '\u226515'], 'id':'first_dose_15'},  {'name': [
-                             'Second dose', '9'], 'id':'second_dose_9'}, {'name': ['Second dose', '10'], 'id':'second_dose_10'}, {'name': ['Second dose', '11'], 'id':'second_dose_11'}, {'name': ['Second dose', '12'], 'id':'second_dose_12'},
-                         {'name': ['Second dose', '13'], 'id':'second_dose_13'}, {'name': ['Second dose', '14'], 'id':'second_dose_14'}, {'name': ['Second dose', '\u226515'], 'id':'second_dose_15'}]
+hpv_table_data = [{'name': ['', 'Name of School'], 'id':'school_name'},
+                  {'name': ['', 'EMIS number'], 'id': 'emis_number'},
+                  {'name': ['', 'Subdistrict name'], 'id': 'subdistrict_name'},
+                  {'name': ['', 'District'], 'id': 'district_name'},
+                  {'name': ['First dose', '9 years'], 'id':'first_dose_9'},
+                  {'name': ['First dose', '10 years'], 'id':'first_dose_10'},
+                  {'name': ['First dose', '11 years'], 'id':'first_dose_11'},
+                  {'name': ['First dose', '12 years'], 'id':'first_dose_12'},
+                  {'name': ['First dose', '13 years'], 'id':'first_dose_13'},
+                  {'name': ['First dose', '14 years'], 'id':'first_dose_14'},
+                  {'name': ['First dose', '\u226515 years'],
+                      'id':'first_dose_15'},
+                  {'name': ['Second dose', '9 years'], 'id':'second_dose_9'},
+                  {'name': ['Second dose', '10 years'], 'id':'second_dose_10'},
+                  {'name': ['Second dose', '11 years'], 'id':'second_dose_11'},
+                  {'name': ['Second dose', '12 years'], 'id':'second_dose_12'},
+                  {'name': ['Second dose', '13 years'], 'id':'second_dose_13'},
+                  {'name': ['Second dose', '14 years'], 'id':'second_dose_14'},
+                  {'name': ['Second dose', '\u226515 years'], 'id':'second_dose_15'}]
 main_table = zip(table_columns, data_columns)
 textStyle = {'color': '#7FDBFF'}
 headStyle = {'font-weight': 'bold'}
@@ -64,6 +104,9 @@ table_data = html.Div(
                     },
                     filter_query='',
                     virtualization=True,
+                    export_format='xlsx',
+                    export_headers='display',
+                    merge_duplicate_headers=True,
                     page_action='none',
                     style_data_conditional=[
                         {'if': {'column_id': 'school_name'},
@@ -124,6 +167,8 @@ hpv_table = html.Div(
                     sort_action='native',
                     filter_action='custom',
                     merge_duplicate_headers=True,
+                    export_format='xlsx',
+                    export_headers='display',
                     filter_query='',
                     virtualization=True,
                     style_header={
@@ -180,7 +225,7 @@ table_card = html.Div([dbc.Card([table_data])])
 hpv_table_card = html.Div([dbc.Card([hpv_table])])
 
 main_left = html.Div(dbc.Card(
-    [html.Br(), html.H6('Filter', style=headStyle), html.Br(), html.Br(), dbc.Card(date_picker, style={'height':'40vh'}), html.Br(),]))
+    [dbc.Card(date_picker, style={'height':'40vh'}), html.Br(),]))
 
 
 seg1 = dbc.Row([dbc.Col(html.Div(main_left),width={'size': 3}), dbc.Col(table_card), dbc.Col(hpv_table_card)])

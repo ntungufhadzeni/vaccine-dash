@@ -35,7 +35,7 @@ class Data:
       self.df_main = pd.merge(self.df_districts, self.df_learners, on='school_name', how='left')
       self.df_main['total_girl_learners'] = self.df_main['total_girl_learners'].fillna(0)
       self.df_main['total_girl_learners'] = self.df_main['total_girl_learners'].astype('int')
-      self.df_main['emis_number'] = self.df_main['emis_number'].astype('int')
+      self.df_main['emis_number'] = self.df_main['emis_number'].astype(np.int64)
       self.df_main['emis_number'] = self.df_main['emis_number'].astype('str')
       self.df_logs = pd.read_sql_query(query, engine)
       self.df_logs.set_index('created_at', inplace=True)
