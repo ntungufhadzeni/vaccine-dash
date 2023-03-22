@@ -87,6 +87,14 @@ table_data = html.Div(
         html.Div(
             [
                 html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
                 html.Div(id='date'),
                 html.Br(),
                 dash_table.DataTable(
@@ -225,10 +233,10 @@ table_card = html.Div([dbc.Card([table_data])])
 hpv_table_card = html.Div([dbc.Card([hpv_table])])
 
 main_left = html.Div(dbc.Card(
-    [dbc.Card(date_picker, style={'height':'40vh'}), html.Br(),]))
+    [dbc.Card(date_picker), html.Br(),]))
 
 
-seg1 = dbc.Row([dbc.Col(dbc.Card(main_left, style={'width':'40vh'})), dbc.Col(table_card), dbc.Col(hpv_table_card)])
+seg1 = dbc.Col([dbc.Row([dbc.Card(main_left), table_card]), dbc.Col(hpv_table_card)])
 
 
 content = [html.Br(), seg1, html.Br()]
