@@ -10,7 +10,7 @@ class Users(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
+    username = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     encrypted_password = db.Column(db.String(225), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)

@@ -25,7 +25,7 @@ navbar = dbc.NavbarSimple(
         )
     ],
     brand="HPV Monitor Dashboard",
-    brand_href="#",
+    brand_href="/dashboard",
     color="primary",
     dark=True,
 )
@@ -40,7 +40,7 @@ layout = html.Div([
             html.Hr(),
             dbc.Row([
                 dbc.Col([
-                    dbc.Label('Username: '),
+                    dbc.Label('Name: '),
                     dcc.Input(
                         id='newUsername',
                         className='form-control',
@@ -128,7 +128,7 @@ layout = html.Div([
                         editable=True,
                         row_deletable=True,
                         columns=[{'name': 'ID', 'id': 'id'},
-                                 {'name': 'Username', 'id': 'username'},
+                                 {'name': 'Name', 'id': 'username'},
                                  {'name': 'Email', 'id': 'email'},
                                  {'name': 'Admin', 'id': 'admin'},
                                  {'deletable': True}],
@@ -153,8 +153,7 @@ def validateUsername(n_clicks, username_submit, new_password1_submit,
                      new_password2_submit, new_email_submit, new_username):
     if n_clicks > 0 or username_submit > 0 or new_password1_submit > 0 or \
             new_password2_submit > 0 or new_email_submit > 0:
-        user = Users.query.filter_by(username=new_username).first()
-        if new_username is None or new_username == '' or user:
+        if new_username is None or new_username == '':
             return 'form-control is-invalid'
         else:
             return 'form-control is-valid'
@@ -238,9 +237,8 @@ def create_user(n_clicks, username_submit, new_password1_submit, new_password2_s
     if (n_clicks > 0) or (username_submit > 0) or (new_password1_submit > 0) or \
             (new_password2_submit > 0) or (new_email_submit > 0):
         user_by_email = Users.query.filter_by(email=new_email).first()
-        user_by_username = Users.query.filter_by(username=new_username).first()
         if new_username and new_password1 and new_password2 and new_email != '' and current_user.is_admin and \
-                not user_by_email and not user_by_username:
+                not user_by_email:
             if new_password1 == new_password2:
                 if len(new_password1) > 7:
                     try:
@@ -267,7 +265,7 @@ def create_user(n_clicks, username_submit, new_password1_submit, new_password2_s
                Input('admin-logout', 'n_clicks')])
 def admin_link(n_clicks_dash, n_clicks_profile, n_clicks_logout):
     if n_clicks_dash > 0:
-        return '/leeto-dashboard'
+        return '/dashboard'
     elif n_clicks_profile > 0:
         return '/profile'
     elif n_clicks_logout > 0:

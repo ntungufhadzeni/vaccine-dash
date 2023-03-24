@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 with server.app_context():
     db.create_all()
     db.session.commit()
-    user = Users('mbudzenin@yahoo.com', 'mbudzenin@yahoo.com', generate_password_hash('Nnrrr@123'), True)
+    user = Users('Ntungufhadzeni Mbudzeni', 'mbudzenin@yahoo.com', generate_password_hash('Nnrrr@123'), True)
     db.session.add(user)
     db.session.commit()
 

@@ -39,7 +39,7 @@ layout = html.Div([
             html.Hr(),
             dbc.Row([
                 dbc.Col([
-                    dbc.Label('Username:'),
+                    dbc.Label('Name:'),
                     html.Br(),
                     html.Br(),
                     dbc.Label('Email:'),

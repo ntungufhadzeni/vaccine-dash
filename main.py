@@ -167,5 +167,15 @@ def update_stats(n, start_date, end_date):
     return html.P(f'Start date: {start}, End date: {end}')
 
 
+@app.callback(Output('drop-menu', 'label'),
+              Input('page-content', 'children'))
+def show_user(page_content):
+    try:
+        username = current_user.username
+        return username
+    except AttributeError:
+        return ''
+
+
 if __name__ == '__main__':
     app.run_server()
